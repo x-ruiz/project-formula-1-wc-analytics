@@ -1,2 +1,32 @@
-# project-formula-1-wc
-Building a simple data lake using dataproc + hdfs + hive table for formula 1 world championship data before learning iceberg
+# project-european-football-stats
+UChicago Applied Data Analytics Supplementary Project
+
+This project aims at creating historical dashboards representing data points across
+formula 1 championships. Therefore, the ETL pipelines created are meant to be triggered
+infrequently to ingest the raw data, as the dataset is not changing frequently. Dataset updates
+etc. would require the pipelines to be retriggered manually.
+
+## Installations
+### Airflow
+https://www.astronomer.io/docs/astro/cli/install-cli/?tab=mac#install-the-astro-cli
+```brew install airflow```
+```astro dev init```
+
+## Design Decisions
+### Raw Data Storage
+Chose to go with parquet over keeping things in CSV due to compression benefits and columnar benefits
+(querying speed etc.)
+
+- Choosing parquet over arrow since we want long term disk storage (not in memory)
+- Choosing parquet over avro since we are likely only going to load certain columns, and not
+entire rows, taking advantage of the columnar storage format.
+
+### Raw Data ETL
+Extract Raw Kaggle Data -> Transform to Parquet -> Load to GCS
+
+Using pandas as total csv file size for all files is ~20MB which is small enough to be able to load
+into memory before creating parquet files. 
+
+### Processing ETL
+Lets aggregate the raw data with another csv to show csv reading capabilities and transformations with pandas/or spark
+
