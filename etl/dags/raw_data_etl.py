@@ -1,3 +1,5 @@
+"""Airflow ETL to extract CSVs for Formula 1 Kaggle Dataset"""
+
 import os
 
 import pandas as pd
@@ -20,7 +22,8 @@ def raw_data_etl():
     3. Loads the transformed data into a Google Cloud Storage (GCS) bucket.
 
     Tasks:
-        - extract_from_kaggle: Downloads the specified csv from Kaggle and loads it into a pandas DataFrame.
+        - extract_from_kaggle: Downloads the specified csv from Kaggle and
+          loads it into a pandas DataFrame.
         - transform_to_parquet: Converts the DataFrame into a Parquet file and saves it locally.
         - load_to_gcs: Uploads the Parquet file to a specified GCS bucket.
 
