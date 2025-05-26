@@ -3,3 +3,6 @@ apache-airflow
 kaggle
 kagglehub
 pyarrow # for pandas to parquets
+google-cloud-storage
+apache-airflow-providers-google
+black
