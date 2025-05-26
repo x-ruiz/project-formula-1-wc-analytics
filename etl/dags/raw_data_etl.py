@@ -5,14 +5,16 @@ import os
 import pandas as pd
 import kagglehub
 import kaggle
+import pendulum
 
-from pendulum import datetime
+# from pendulum import datetime
 from airflow.decorators import dag, task
-from kagglehub import KaggleDatasetAdapter
+
+# from kagglehub import KaggleDatasetAdapter
 from google.cloud import storage
 
 
-@dag(start_date=datetime(2025, 1, 1), schedule="@once")
+@dag(start_date=pendulum.datetime(2025, 1, 1), schedule="@once")
 def raw_data_etl():
     """
     Executes an ETL (Extract, Transform, Load) pipeline for raw Formula 1 data.
@@ -37,8 +39,9 @@ def raw_data_etl():
         None
     """
     gcp_project = "formula-1-wc-analytics"
-    raw_bucket = "f1_wc_1950_2020_raw"
+    raw_bucket = "f1_wc_1950_2020"
     dataset = "rohanrao/formula-1-world-championship-1950-2020"
+    current_date = pendulum.now("America/Chicago").date()
 
     @task()
     def list_files() -> list[str]:
@@ -46,7 +49,9 @@ def raw_data_etl():
         files = kaggle.api.dataset_list_files(dataset).files
 
         for f in files:
-            output.append(f.name)
+            # remove .csv extension
+            filename = f.name.split(".")[0]
+            output.append(filename)
 
         print(f"Files to be processed: {output}")
         return output
@@ -62,8 +67,8 @@ def raw_data_etl():
         # Download latest version
         df = kagglehub.load_dataset(
             handle=dataset,
-            adapter=KaggleDatasetAdapter.PANDAS,
-            path=name,
+            adapter=kagglehub.KaggleDatasetAdapter.PANDAS,
+            path=f"{name}.csv",
         )
         print("Extracted df", df.head())
 
@@ -87,7 +92,7 @@ def raw_data_etl():
     @task(map_index_template="{{ name }}")
     def load_to_gcs(parquet_path: str, name: str) -> bool:
         # lifecycle rule set up to clear files under test every day
-        destination_path = f"test/{name}.parquet"
+        destination_path = f"raw/{name}/dt={current_date}/data.parquet"
         client = storage.Client(project=gcp_project)
         bucket = client.bucket(raw_bucket)
         blob = bucket.blob(destination_path)
