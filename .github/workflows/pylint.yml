@@ -20,4 +20,5 @@ jobs:
         pip install pylint
     - name: Analysing the code with pylint
       run: |
+        pip install -r etl/requirements.txt
         pylint $(git ls-files 'etl/dags/*.py')

@@ -1,5 +1,6 @@
-import pandas as pd
 import os
+
+import pandas as pd
 import kagglehub
 
 from pendulum import datetime
@@ -10,6 +11,27 @@ from google.cloud import storage
 
 @dag(start_date=datetime(2025, 1, 1), schedule="@once")
 def raw_data_etl():
+    """
+    Executes an ETL (Extract, Transform, Load) pipeline for raw Formula 1 data.
+
+    This function orchestrates the following steps:
+    1. Extracts data from a Kaggle csv.
+    2. Transforms the extracted data into a Parquet file format.
+    3. Loads the transformed data into a Google Cloud Storage (GCS) bucket.
+
+    Tasks:
+        - extract_from_kaggle: Downloads the specified csv from Kaggle and loads it into a pandas DataFrame.
+        - transform_to_parquet: Converts the DataFrame into a Parquet file and saves it locally.
+        - load_to_gcs: Uploads the Parquet file to a specified GCS bucket.
+
+    Variables:
+        data (str): The name of the dataset to process (e.g., "circuits").
+        gcp_project (str): The Google Cloud project ID.
+        raw_bucket (str): The name of the GCS bucket where the data will be stored.
+
+    Returns:
+        None
+    """
     data = "circuits"
     gcp_project = "formula-1-wc-analytics"
     raw_bucket = "f1_wc_1950_2020_raw"
@@ -42,7 +64,8 @@ def raw_data_etl():
 
     @task()
     def load_to_gcs(parquet_path: str) -> bool:
-        destination_path = f"test/{data}.parquet"  # lifecycle rule set up to clear files under test every day
+        # lifecycle rule set up to clear files under test every day
+        destination_path = f"test/{data}.parquet"
         client = storage.Client(project=gcp_project)
         bucket = client.bucket(raw_bucket)
         blob = bucket.blob(destination_path)
