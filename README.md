@@ -6,6 +6,8 @@ formula 1 championships. Therefore, the ETL pipelines created are meant to be tr
 infrequently to ingest the raw data, as the dataset is not changing frequently. Dataset updates
 etc. would require the pipelines to be retriggered manually.
 
+***Trello***: https://trello.com/b/Fjycvl2O
+
 ## Ideation Phase
 1. Aggregate circuits raw table with csv dataset containing population of each city, to see if there is
 relationship with city density to circuit attendance
