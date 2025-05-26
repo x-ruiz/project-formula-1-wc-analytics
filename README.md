@@ -1,4 +1,4 @@
-# project-european-football-stats
+# project-formula-1-wc-analytics
 UChicago Applied Data Analytics Supplementary Project
 
 This project aims at creating historical dashboards representing data points across
