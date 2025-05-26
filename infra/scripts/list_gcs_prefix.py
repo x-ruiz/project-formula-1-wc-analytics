@@ -1,7 +1,9 @@
-import os
+"""This script returns the all first level prefixes given a parent prefix"""
+
 import json
 
 from google.cloud import storage
+from google.api_core.exceptions import NotFound
 
 
 def list_gcs_prefixes(bucket: str, prefix: str) -> list[str]:
@@ -38,7 +40,7 @@ if __name__ == "__main__":
 
     input_data = json.load(sys.stdin)  # get inputs from tf module
     bucket_name = input_data.get("bucket_name")
-    prefix = input_data.get("prefix")
+    input_prefix = input_data.get("prefix")
     output_result = {"all_prefixes_json": "", "prefix_count": "", "source_bucket": ""}
 
     if not bucket_name:
@@ -46,16 +48,15 @@ if __name__ == "__main__":
         sys.exit(1)
 
     try:
-        prefixes = list_gcs_prefixes(bucket=bucket_name, prefix=prefix)
+        prefixes = list_gcs_prefixes(bucket=bucket_name, prefix=input_prefix)
         output_result["all_prefixes_json"] = json.dumps(
             prefixes
         )  # List as a JSON string
         output_result["prefix_count"] = str(len(prefixes))  # Count as a string
         output_result["source_bucket"] = bucket_name  # Confirm the input bucket
 
-        print(json.dumps(output_result))
-    except Exception as e:
+    except NotFound as e:
         print(json.dumps(output_result))
         sys.stderr.write(f"Error getting gcs prefixes: {e} \n")
         # sys.exit(1)
-    # print(list_gcs_prefixes("f1_wc_1950_2020", "raw"))
+    # print(list_gcs_prefixes("f1_wc_1950_20201", "raw"))
