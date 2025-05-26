@@ -12,6 +12,13 @@ https://www.astronomer.io/docs/astro/cli/install-cli/?tab=mac#install-the-astro-
 ```brew install airflow```
 ```astro dev init```
 
+### GCloud Credentials
+For local development only:
+```gcloud auth application-default login``` -> ~/.config/gcloud/application_default_credentials.json
+
+Allows for local api requests to GCP using python libraries. For production deployment, export a service
+account credentials file and use as an ENV variable.
+
 ## Design Decisions
 ### Raw Data Storage
 Chose to go with parquet over keeping things in CSV due to compression benefits and columnar benefits

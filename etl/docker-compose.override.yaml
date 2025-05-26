@@ -1,0 +1,11 @@
+version: "3.1"
+services:
+    scheduler:
+        volumes:
+        - ${REPO_PATH}/etl/gcloud:/usr/local/airflow/gcloud:z
+    webserver:
+        volumes:
+        - ${REPO_PATH}/etl/gcloud:/usr/local/airflow/gcloud:z
+    triggerer:
+        volumes:
+        - ${REPO_PATH}/etl/gcloud:/usr/local/airflow/gcloud:z
