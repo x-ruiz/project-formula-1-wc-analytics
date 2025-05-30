@@ -8,6 +8,10 @@ etc. would require the pipelines to be retriggered manually.
 
 ***Trello***: https://trello.com/b/Fjycvl2O
 
+## Dashboards
+![image](https://github.com/user-attachments/assets/ea551b3c-06e8-48b9-9d78-1f5430b64580)
+
+
 ## Ideation Phase
 1. Aggregate circuits raw table with csv dataset containing population of each city, to see if there is
 relationship with city density to circuit attendance
