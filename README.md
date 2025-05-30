@@ -27,15 +27,11 @@ account credentials file and use as an ENV variable.
 
 ## Design Decisions
 ### Raw Data Storage
-Chose to go with parquet over keeping things in CSV due to compression benefits and columnar benefits
-(querying speed etc.)
-
-- Choosing parquet over arrow since we want long term disk storage (not in memory)
-- Choosing parquet over avro since we are likely only going to load certain columns, and not
-entire rows, taking advantage of the columnar storage format.
+Chose to transform raw csvs to parquet for schema enforcement and query performance (columnar)
+since these tables will likely be joined against frequently
 
 ### Raw Data ETL
-Extract Raw Kaggle Data -> Transform to Parquet -> Load to GCS
+Extract Raw Kaggle Data -> Load to GCS
 
 Using pandas as total csv file size for all files is ~20MB which is small enough to be able to load
 into memory before creating parquet files. 
@@ -43,3 +39,17 @@ into memory before creating parquet files.
 ### Processing ETL
 Lets aggregate the raw data with another csv to show csv reading capabilities and transformations with pandas/or spark
 
+### Curated Data Storage
+- Choosing parquet over arrow since we want long term disk storage (not in memory)
+- Choosing parquet over avro since we are likely only going to load certain columns, and not
+entire rows, taking advantage of the columnar storage format.
+
+### Dataplex vs Manual External Tables
+Chose Dataplex to manage bigquery tables due to its logical separations and auto discovery features.
+Since this is a personal project, we do not have SLA's on table creation time, so hourly discovery for tables is ok.
+Additionally, it simplifies having to write a python script to parse files in a gcs bucket and dynamically
+create external tables in terraform ourselves. In a production environment with SLAs, I would rather the latter however.
+
+### Enriched Views
+Decided to use views for enriched data since we aren't working with a lot of data, join performance time shouldn't be a problem.
+If we encounter larger amounts of data, then processing into its own table (denormalize) would be beneficial
