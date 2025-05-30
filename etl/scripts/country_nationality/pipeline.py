@@ -15,9 +15,16 @@ def transform(df: pd.DataFrame) -> str:
     # Groups by nationality and combines country names into a list, named "Countries"
     aggregated = df.groupby("Nationality").agg(Countries=("Name", list)).reset_index()
 
+    # Fix argentinean -> argentinian
+    aggregated.loc[aggregated["Nationality"] == "Argentinean", "Nationality"] = (
+        "Argentinian"
+    )
+
     aggregated.to_parquet(
         output_path, engine="pyarrow"
     )  # pandas handles schema using the dataframe types
+
+    print(aggregated.head(20))
     print(f"Parquet file saved to {output_path}")
 
     return output_path
