@@ -1,7 +1,7 @@
-resource "google_storage_bucket" "f1_wc_1950_2020" {
+resource "google_storage_bucket" "f1_wc_data" {
   project       = var.project_name
-  name          = "f1_wc_1950_2020"
-  location      = "us-central1"
+  name          = "f1_wc_data"
+  location      = var.primary_region
   force_destroy = true
   lifecycle_rule {
     action {

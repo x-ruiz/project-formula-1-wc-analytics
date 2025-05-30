@@ -39,7 +39,7 @@ def raw_data_etl():
         None
     """
     gcp_project = "formula-1-wc-analytics"
-    raw_bucket = "f1_wc_1950_2020"
+    raw_bucket = "f1_wc_data"
     dataset = "rohanrao/formula-1-world-championship-1950-2020"
     current_date = pendulum.now("America/Chicago").date()
 
@@ -92,7 +92,7 @@ def raw_data_etl():
     @task(map_index_template="{{ name }}")
     def load_to_gcs(parquet_path: str, name: str) -> bool:
         # lifecycle rule set up to clear files under test every day
-        destination_path = f"raw/{name}/dt={current_date}/data.parquet"
+        destination_path = f"f1_wc_1950_2020_raw/{name}/dt={current_date}/data.parquet"
         client = storage.Client(project=gcp_project)
         bucket = client.bucket(raw_bucket)
         blob = bucket.blob(destination_path)
