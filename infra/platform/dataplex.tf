@@ -53,7 +53,8 @@ resource "google_dataplex_asset" "raw_bucket" {
 ###
 resource "google_dataplex_zone" "curated_zone" {
   discovery_spec {
-    enabled = true
+    enabled  = true
+    schedule = ""
   }
 
   lake     = google_dataplex_lake.primary.name
