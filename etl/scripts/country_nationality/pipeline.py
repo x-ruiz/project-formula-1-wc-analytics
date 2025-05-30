@@ -12,12 +12,19 @@ def transform(df: pd.DataFrame) -> str:
     output_path = f"{script_path}/transformed.parquet"
     print(f"[INFO] Transforming dataframe and storing csv to {output_path}")
 
+    # Fix United Kingdom -> UK
+    df.loc[df["Name"] == "United Kingdom", "Name"] = "UK"
+
+    # Fix Argentinean -> Argentinian
+    df.loc[df["Nationality"] == "Argentinean", "Nationality"] = "Argentinian"
+
     # Groups by nationality and combines country names into a list, named "Countries"
     aggregated = df.groupby("Nationality").agg(Countries=("Name", list)).reset_index()
 
     aggregated.to_parquet(
         output_path, engine="pyarrow"
     )  # pandas handles schema using the dataframe types
+
     print(f"Parquet file saved to {output_path}")
 
     return output_path

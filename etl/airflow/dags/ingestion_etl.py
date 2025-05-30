@@ -94,7 +94,7 @@ def ingestion_etl():
     @task(map_index_template="{{ name }}")
     def load_to_gcs(parquet_path: str, name: str) -> bool:
         # lifecycle rule set up to clear files under test every day
-        destination_path = f"1950_2020/{name}/dt={current_date}/data.parquet"
+        destination_path = f"1950_2024/{name}/dt={current_date}/data.parquet"
         client = storage.Client(project=gcp_project)
         bucket = client.bucket(raw_bucket)
         blob = bucket.blob(destination_path)
