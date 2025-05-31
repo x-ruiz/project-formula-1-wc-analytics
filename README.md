@@ -1,5 +1,5 @@
 # project-formula-1-wc-analytics
-UChicago Applied Data Analytics Supplementary Project
+UChicago Applied Data Science Supplementary Project
 
 This project aims at creating historical dashboards representing data points across
 formula 1 championships. Therefore, the ETL pipelines created are meant to be triggered
