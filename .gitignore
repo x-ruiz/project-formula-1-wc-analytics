@@ -1,2 +1,6 @@
 # Terraform
 **.terraform
+
+# Analysis
+**.venv
+**.ipynb_checkpoints

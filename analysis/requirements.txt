@@ -1,0 +1,5 @@
+notebook
+google-cloud-bigquery
+# Needed by bigquery library
+pandas
+db-dtypes
