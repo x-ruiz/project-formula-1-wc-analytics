@@ -1,5 +1,6 @@
 notebook
-google-cloud-bigquery
-# Needed by bigquery library
+nb_pdf_template
+dataframe_image
 pandas
-db-dtypes
+matplotlib
+seaborn
