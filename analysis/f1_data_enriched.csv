@@ -1,7 +1,7 @@
 year,date,race_id,grand_prix,circuit_ref,circuit_name,country,winner_driver,won_home_race,url
 2024,2024-12-08,1144,Abu Dhabi Grand Prix,yas_marina,Yas Marina Circuit,UAE,norris,false,https://en.wikipedia.org/wiki/2024_Abu_Dhabi_Grand_Prix
 2024,2024-12-01,1143,Qatar Grand Prix,losail,Losail International Circuit,Qatar,max_verstappen,false,https://en.wikipedia.org/wiki/2024_Qatar_Grand_Prix
-2024,2024-11-23,1142,Las Vegas Grand Prix,vegas,Las Vegas Strip Street Circuit,United States,russell,false,https://en.wikipedia.org/wiki/2024_Las_Vegas_Grand_Prix
+2024,2024-11-23,1142,Las Vegas Grand Prix,vegas,Las Vegas Strip Street Circuit,USA,russell,false,https://en.wikipedia.org/wiki/2024_Las_Vegas_Grand_Prix
 2024,2024-11-03,1141,São Paulo Grand Prix,interlagos,Autódromo José Carlos Pace,Brazil,max_verstappen,false,https://en.wikipedia.org/wiki/2024_S%C3%A3o_Paulo_Grand_Prix
 2024,2024-10-27,1140,Mexico City Grand Prix,rodriguez,Autódromo Hermanos Rodríguez,Mexico,sainz,false,https://en.wikipedia.org/wiki/2024_Mexico_City_Grand_Prix
 2024,2024-10-20,1139,United States Grand Prix,americas,Circuit of the Americas,USA,leclerc,false,https://en.wikipedia.org/wiki/2024_United_States_Grand_Prix
@@ -24,7 +24,7 @@ year,date,race_id,grand_prix,circuit_ref,circuit_name,country,winner_driver,won_
 2024,2024-03-09,1122,Saudi Arabian Grand Prix,jeddah,Jeddah Corniche Circuit,Saudi Arabia,max_verstappen,false,https://en.wikipedia.org/wiki/2024_Saudi_Arabian_Grand_Prix
 2024,2024-03-02,1121,Bahrain Grand Prix,bahrain,Bahrain International Circuit,Bahrain,max_verstappen,false,https://en.wikipedia.org/wiki/2024_Bahrain_Grand_Prix
 2023,2023-11-26,1120,Abu Dhabi Grand Prix,yas_marina,Yas Marina Circuit,UAE,max_verstappen,false,https://en.wikipedia.org/wiki/2023_Abu_Dhabi_Grand_Prix
-2023,2023-11-19,1119,Las Vegas Grand Prix,vegas,Las Vegas Strip Street Circuit,United States,max_verstappen,false,https://en.wikipedia.org/wiki/2023_Las_Vegas_Grand_Prix
+2023,2023-11-19,1119,Las Vegas Grand Prix,vegas,Las Vegas Strip Street Circuit,USA,max_verstappen,false,https://en.wikipedia.org/wiki/2023_Las_Vegas_Grand_Prix
 2023,2023-11-05,1118,São Paulo Grand Prix,interlagos,Autódromo José Carlos Pace,Brazil,max_verstappen,false,https://en.wikipedia.org/wiki/2023_S%C3%A3o_Paulo_Grand_Prix
 2023,2023-10-29,1117,Mexico City Grand Prix,rodriguez,Autódromo Hermanos Rodríguez,Mexico,max_verstappen,false,https://en.wikipedia.org/wiki/2023_Mexico_City_Grand_Prix
 2023,2023-10-22,1116,United States Grand Prix,americas,Circuit of the Americas,USA,max_verstappen,false,https://en.wikipedia.org/wiki/2023_United_States_Grand_Prix
